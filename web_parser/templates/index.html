@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="root">
+        <h1 class="title">Главная форма</h1>
+        <p id="error_text" class="error is-hidden"></p>
+        <form class="form" id="mainForm" action="/form/parse" method="POST">
+            <input class="field" id="token_field" hidden value="{{ csrf_token }}" />
+            <input class="field" id="url_field" placeholder="Введите адресс сайта" name="url" />
+            <div class="wrapper">
+                <button class="tab is-active" type="button" id="all_button">Получить всю разметку</button>
+                <button class="tab" type="button" id="class_button">Поиск по классу</button>
+                <button class="tab" type="button" id="text_button">Поиск по наличию текста</button>
+            </div>
+            <input class="field is-hidden" placeholder="Введите искомый класс" id="class_field" class="is-hidden" />
+            <input class="field is-hidden" placeholder="Введите искомый тэг" id="tag_field" class="is-hidden" />
+            <input class="field is-hidden" placeholder="Введите подстроку" id="text_field" class="is-hidden" />
+            <button class="submit" type="submit">Запросить</button>
+        </form>
+    </div>
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
